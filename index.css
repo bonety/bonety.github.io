@@ -19,13 +19,35 @@ html, body {
 
 .center {
     margin: auto;
-    width: 20%;
+    width: 25%;
     border: 2px solid #FFFF00;
     padding: 0px;
     text-align: center;
     }
 
+.centerClr {
+    margin: auto;
+    width: 25%;
+    padding: 0px;
+    text-align: center;
+    }
+
 #titleText {
-    margin-top: 0px;
+    margin-top: 4px;
     margin-bottom: 4px;
+}
+
+#title {
+    margin-top: 2ch;
+}
+
+#numberDiv {
+    border: 1px solid #FFFF00;
+    margin-top: 13px
+}
+
+#number {
+    margin-top: 37px;
+    margin-bottom: 37px;
+    color: yellow;
 }
