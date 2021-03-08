@@ -1,0 +1,31 @@
+html, body {
+    margin: 5px;
+    padding: 0;
+    background-color: #181818;
+}
+
+
+.font {
+    font-family: 'Press Start 2P', cursive;
+	color: floralwhite;
+	font-size:12px;
+}
+
+.fontSpecial {
+    font-family: 'Libre Barcode 39 Text', cursive;
+	color: yellow;
+	font-size:40px;
+}
+
+.center {
+    margin: auto;
+    width: 20%;
+    border: 2px solid #FFFF00;
+    padding: 0px;
+    text-align: center;
+    }
+
+#titleText {
+    margin-top: 0px;
+    margin-bottom: 4px;
+}
