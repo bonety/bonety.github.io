@@ -5,6 +5,7 @@ var app = new Vue({
     }
   })
 
+  //this should work in github page too
 var app2 = new Vue({
     el: '#app-2',
     data: {
