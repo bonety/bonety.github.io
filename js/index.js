@@ -19,7 +19,7 @@ var app = new Vue({
           b = 300 - a;
         }
         ctx.fillStyle = "rgba(0, 0, 200, 0.5)";
-        ctx.fillRect(20 + b, 20 + a, 20 + b , 20 + b);
+        ctx.fillRect(20 + b, 20 + b, 20 + b , 20 + b);
       }
     }
   },
