@@ -4,6 +4,9 @@ html, body {
     background-color: #181818;
 }
 
+canvas {
+    border: 1px solid goldenrod;
+}
 
 .font {
     font-family: 'Press Start 2P', cursive;
