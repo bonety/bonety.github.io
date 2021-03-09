@@ -19,10 +19,11 @@ html, body {
 
 .center {
     margin: auto;
-    width: 25%;
+    width: 500px;
     border: 2px solid #FFFF00;
     padding: 0px;
     text-align: center;
+    margin-bottom: 10px;
     }
 
 .centerClr {
@@ -50,4 +51,18 @@ html, body {
     margin-top: 37px;
     margin-bottom: 37px;
     color: yellow;
+}
+
+#content {
+    margin-top: 2ch;
+}
+
+#menu {
+    padding:2ch;
+    border: 1px solid yellow;
+}
+
+#visuals {
+    padding:2ch;
+    border: 1px solid yellow;
 }
