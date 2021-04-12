@@ -47,13 +47,40 @@ canvas {
     border: 2px solid goldenrod;
     background-color: yellow;
     text-align: center;
-    width: 300px;
     padding: 15px;
     font-size: 12px;
     cursor: pointer;
     margin-top: 4px;
     margin-bottom: 4px;
+    user-select: none;
+    justify-self: flex-end;
+}
 
+.generator.locked {
+    background-color: #181818;
+    color: yellow;
+}
+
+.inliner {
+    margin-left: 5ch;
+    margin-right: 5ch;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+
+.inliner p {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 10px;
+}
+
+.gentext {
+    margin-right: 30px;
+    text-align: left;
+    justify-self: flex-start;
 }
 
 #currency {
@@ -101,8 +128,12 @@ canvas {
 #visuals {
     padding:2ch;
     border: 1px solid yellow;
+    justify-content: center;
+    text-align: center;
     overflow: hidden;
 }
+
+
 
 #buttonGen1 {
     background-color: #FFFF00;

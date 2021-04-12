@@ -14,47 +14,32 @@
     />
     <link rel="stylesheet" href="css/styles.css" />
 
-    <title>Fractemental 0.0.1</title>
+    <title>Fractemental 0.2.2</title>
   </head>
   <body>
     <div id="app">
-      <div id="title" class="center">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="d-none d-sm-block col-sm-2">
-              <p id="titleText" class="fontSpecial">FRA</p>
-              <p id="titleText" class="fontSpecial">MEN</p>
-            </div>
-            <div class="col-sm">
-              <div id="numberDiv"><p id="number">{{ player.fractals }}</p></div>
-            </div>
-            <div class="d-none d-sm-block col-sm-2">
-              <p id="titleText" class="fontSpecial">CTE</p>
-              <p id="titleText" class="fontSpecial">TAL</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <div class="centerClr">
-        <p class="font">The incremental game about fractals!</p>
-        <button
-          id="buttonMain"
-          type="button"
-          class="btn btn-outline-light font"
-          v-on:click="inc"
-        >
-          Add Fractal
-        </button>
+        <p class="font mt-4 mb-4">The incremental game about fractals!</p>
+        <div class="inliner">
+          <button
+            id="buttonMain"
+            type="button"
+            class="btn btn-outline-light font"
+            v-on:click="inc">
+            Add Fractal
+          </button>
+          <p class="font" id="quality"></p>
+        </div>
+        
       </div>
 
       <div id="content">
         <div class="container-fluid">
           <div class="row">
-            <div id="menu" class="d-none d-sm-block col-sm-6">
+            <div id="menu" class="d-none d-sm-block col-sm-8">
               <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                  <button class="nav-link active" id="nav-up1-tab" data-bs-toggle="tab" data-bs-target="#nav-up1" type="button" role="tab" aria-controls="nav-up1" aria-selected="true">Upgrades 1</button>
+                  <button class="nav-link active" id="nav-up1-tab" data-bs-toggle="tab" data-bs-target="#nav-up1" type="button" role="tab" aria-controls="nav-up1" aria-selected="true">Generators</button>
                   <button class="nav-link" id="nav-up2-tab" data-bs-toggle="tab" data-bs-target="#nav-up2" type="button" role="tab" aria-controls="nav-up2" aria-selected="false">Upgrades 2</button>
                   <button class="nav-link" id="nav-up3-tab" data-bs-toggle="tab" data-bs-target="#nav-up3" type="button" role="tab" aria-controls="nav-up3" aria-selected="false">Upgrades 3</button>
                   <button class="nav-link" id="nav-opt-tab" data-bs-toggle="tab" data-bs-target="#nav-opt" type="button" role="tab" aria-controls="nav-opt" aria-selected="false">Options</button>
@@ -67,12 +52,28 @@
                   game to be found here.
                 </p>
                 <div class= "font" id="currency">You have {{ player.fractals }} Fractals</div>
+                
                 <div class="generators-container">
-                  <div class="generator" id="gen1" onclick="buyGenerator(1)"></div>
-                  <div class="generator" id="gen2" onclick="buyGenerator(2)"></div>
-                  <div class="generator" id="gen3" onclick="buyGenerator(3)"></div>
-                  <div class="generator" id="gen4" onclick="buyGenerator(4)"></div>
-                  <div class="generator" id="gen5" onclick="buyGenerator(5)"></div>
+                  <div class="inliner">
+                    <p class="font gentext">Convolution -</p>
+                    <div class="generator" id="gen1" onclick="buyGenerator(1)"></div>
+                  </div>
+                  <div class="inliner">
+                    <p class="font gentext">Transformation -</p>
+                    <div class="generator" id="gen2" onclick="buyGenerator(2)"></div>
+                  </div>
+                  <div class="inliner">
+                    <p class="font gentext">Integration -</p>
+                    <div class="generator" id="gen3" onclick="buyGenerator(3)"></div>
+                  </div>
+                  <div class="inliner">
+                    <p class="font gentext">Multidimensional Formulation -</p>
+                    <div class="generator" id="gen4" onclick="buyGenerator(4)"></div>
+                  </div>
+                  <div class="inliner">
+                    <p class="font gentext">Correlational Integration -</p>
+                    <div class="generator" id="gen5" onclick="buyGenerator(5)"></div>
+                  </div>
                 </div>
                 
               </div>
@@ -93,7 +94,7 @@
                 </div>
               </div>
             </div>
-            <div id="visuals" class="d-none d-sm-block col-sm-6">
+            <div id="visuals" class="d-none d-sm-block col-sm-4">
               <canvas id="fractalDraw" width="500" height="500"></canvas>
             </div>
           </div>
