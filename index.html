@@ -1,64 +1,116 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Libre+Barcode+39+Text&family=Press+Start+2P&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="css/styles.css">
+  <head>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Libre+Barcode+39+Text&family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
 
-        <title>Fractemental 0.0.1</title>
-    </head>
-    <body>
-      <div id="app">
-        <div id="title" class="center">
-          <div class="container-fluid">
-            <div class="row">
-              <div class="d-none d-sm-block col-sm-2">
-                <p id="titleText" class="fontSpecial">FRA</p>
-                <p id="titleText" class="fontSpecial">MEN</p>
-              </div>
-              <div class="col-sm">
-                <div id="numberDiv"> <p id="number">{{ player.fractals }}</p> </div>
-              </div>
-              <div class="d-none d-sm-block col-sm-2">
-                <p id="titleText" class="fontSpecial">CTE</p>
-                <p id="titleText" class="fontSpecial">TAL</p>
-              </div>
+    <title>Fractemental 0.0.1</title>
+  </head>
+  <body>
+    <div id="app">
+      <div id="title" class="center">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="d-none d-sm-block col-sm-2">
+              <p id="titleText" class="fontSpecial">FRA</p>
+              <p id="titleText" class="fontSpecial">MEN</p>
             </div>
-          </div>
-        </div>      
-      
-        <div class="centerClr">
-          <p class="font">
-            The incremental game about fractals!
-          </p>
-          <button type="button" class="btn btn-outline-light font" data-mdb-ripple-color="dark" v-on:click="inc">Add Fractal</button>
-        </div>
-        
-        <div id="content">
-          <div class="container-fluid">
-            <div class="row">
-              <div id="menu" class="d-none d-sm-block col-sm-6">
-                <p class="font">This website is still in active development.
-                                There is no real game to be found here. (yet) 
-                                This is a damn cool looking triangle though. Can you get over 150? </p>
-              </div>
-              <div id="visuals" class="d-none d-sm-block col-sm-6">
-                <canvas id="fractalDraw" width="500" height="500"></canvas>
-              </div>
+            <div class="col-sm">
+              <div id="numberDiv"><p id="number">{{ player.fractals }}</p></div>
+            </div>
+            <div class="d-none d-sm-block col-sm-2">
+              <p id="titleText" class="fontSpecial">CTE</p>
+              <p id="titleText" class="fontSpecial">TAL</p>
             </div>
           </div>
         </div>
-
       </div>
-      
-    </body>
 
-<script src="js/vue.js"></script>
-<!-- this will bring up the working square draw function-->
-<!-- script src="js/fractal.js"></script-->
-<script src="js/player.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
-<script src="js/index.js"></script>
+      <div class="centerClr">
+        <p class="font">The incremental game about fractals!</p>
+        <button
+          id="buttonMain"
+          type="button"
+          class="btn btn-outline-light font"
+          v-on:click="inc"
+        >
+          Add Fractal
+        </button>
+      </div>
 
+      <div id="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div id="menu" class="d-none d-sm-block col-sm-6">
+              <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                  <button class="nav-link active" id="nav-up1-tab" data-bs-toggle="tab" data-bs-target="#nav-up1" type="button" role="tab" aria-controls="nav-up1" aria-selected="true">Upgrades 1</button>
+                  <button class="nav-link" id="nav-up2-tab" data-bs-toggle="tab" data-bs-target="#nav-up2" type="button" role="tab" aria-controls="nav-up2" aria-selected="false">Upgrades 2</button>
+                  <button class="nav-link" id="nav-up3-tab" data-bs-toggle="tab" data-bs-target="#nav-up3" type="button" role="tab" aria-controls="nav-up3" aria-selected="false">Upgrades 3</button>
+                  <button class="nav-link" id="nav-opt-tab" data-bs-toggle="tab" data-bs-target="#nav-opt" type="button" role="tab" aria-controls="nav-opt" aria-selected="false">Options</button>
+                </div>
+              </nav>
+              <div class="tab-content mt-3" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-up1" role="tabpanel" aria-labelledby="nav-up1">
+                  <p class="font">
+                  This website is still in active development. There is no real
+                  game to be found here.
+                </p>
+                <div class= "font" id="currency">You have {{ player.fractals }} Fractals</div>
+                <div class="generators-container">
+                  <div class="generator" id="gen1" onclick="buyGenerator(1)"></div>
+                  <div class="generator" id="gen2" onclick="buyGenerator(2)"></div>
+                  <div class="generator" id="gen3" onclick="buyGenerator(3)"></div>
+                  <div class="generator" id="gen4" onclick="buyGenerator(4)"></div>
+                  <div class="generator" id="gen5" onclick="buyGenerator(5)"></div>
+                </div>
+                
+              </div>
+                <div class="tab-pane fade" id="nav-up2" role="tabpanel" aria-labelledby="nav-up2">
+                  <p class="font">
+                    This is the text and area for upgrade 2. These upgrades are midgame upgrades only later available in the game.
+                  </p>
+                </div>
+                <div class="tab-pane fade" id="nav-up3" role="tabpanel" aria-labelledby="nav-up3">
+                  <p class="font">
+                    This is the text and area for upgrade 3. This is the endgame stuff probably!
+                  </p>
+                </div>
+                <div class="tab-pane fade" id="nav-opt" role="tabpanel" aria-labelledby="nav-opt">
+                  <p class="font">
+                    Here are the options of the game
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div id="visuals" class="d-none d-sm-block col-sm-6">
+              <canvas id="fractalDraw" width="500" height="500"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script src="js/vue.js"></script>
+  <!-- this will bring up the working square draw function-->
+  <!-- script src="js/fractal.js"></script-->
+  <script src="js/player.js"></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+    crossorigin="anonymous"
+  ></script>
+  <script src="js/index.js"></script>
+  <script src="js/ressources.js"></script>
 </html>

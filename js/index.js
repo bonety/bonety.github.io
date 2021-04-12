@@ -29,7 +29,7 @@ var app = new Vue({
         // How many points we've drawn so far
         let count = 0;
 
-        while (count < 15000) {
+        while (count < this.player.fractals) {
           // Pick a random number: 0, 1, or 2
           let rand = Math.floor(Math.random() * shape.length);
 
