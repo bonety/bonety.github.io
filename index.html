@@ -21,16 +21,22 @@
       <div class="centerClr">
         <p class="font mt-4 mb-4">The incremental game about fractals!</p>
         <div class="inliner">
-          <button
-            id="buttonMain"
-            type="button"
-            class="btn btn-outline-light font"
-            v-on:click="inc">
-            Add Fractal
-          </button>
+          <div>
+            <button
+              id="buttonMain"
+              type="button"
+              class="btn btn-outline-light font"
+              v-on:click="inc">
+              Add Fractal
+            </button>
+            <div id="chargeContainer">
+              <div id="chargeBar"></div>
+            </div>
+          </div>
+          
           <p class="font" id="quality"></p>
           <div class="inliner">
-            <p class="font" id="interText">Interpolation - Gives better Quality</p>
+            <p class="font" id="interText">Interpolation - Makes the chargebar recharge quicker</p>
             <div class="interpolation" id="inter" onclick="buyInterpolation()"></div>
           </div>
         </div>
@@ -106,7 +112,7 @@
         </div>
       </div>
       <div class="inliner">
-        <div id="shift" onclick="fractalShift()">Fractal shift 10e35</div>
+        <div id="shift" onclick="fractalShift()">Fractal shift 1.0e35</div>
         <p id="shiftText" class="font">Do a fractal shift. Reset the game and get a fractal diamond. 
           Fractal diamonds can be used for new upgrades! Only do this if you're sure you want to reset. 
           (! NOT IMPLEMENTED YET BUT GO FOR IT !)</p>

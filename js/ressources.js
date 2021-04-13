@@ -2,13 +2,15 @@ var generators = []
 var lastUpdate = Date.now()
 var quality = 0
 var value = 1
+var tickCounter = 0
+var chargeStatus = 100
 let best = 0
 let perSec = 0
 let shiftCost = Math.pow(10,35)
 let stopper = {
   cost: Math.pow(Math.pow(10, 1), 2) * 10,
   bought: 0,
-  mult: 1,
+  amount: 0,
 }
 for (let i = 0; i < 5; i++) {
     let generator = {
@@ -46,14 +48,41 @@ function buyInterpolation() {
     if (s.cost > this.player.fractals) return
     this.player.fractals -= s.cost
     s.bought += 1
-    s.mult += 1
+    s.amount += 20
     s.cost *= 12
     
 }
 
+function chargeBar() {
+    var elem = document.getElementById("chargeBar")
+    elem.style.width = chargeStatus + "%"
+
+}
+
+function valueCalculation(diff) {
+  if (perSec > best) best = perSec
+  
+  
+  // upgrades of interpolation determine the speed of the recharge of the bar
+  t_hold = (510 - stopper.amount)
+
+  tickCounter += 1
+  if (tickCounter >= t_hold) {
+    tickCounter = 0
+    if (chargeStatus != 100) chargeStatus += (5 * (diff * 20))
+  } 
+  if (chargeStatus > 100) chargeStatus = 100
+
+  if (quality == 0) value = 1
+  else {
+    value = 1 + ((((quality * quality * chargeStatus) / 3) / 100) * chargeStatus)
+  }
+
+}
+
 function fractalShift() {
   if (shiftCost > this.player.fractals) return
-  alert("You reached the end of this game. The game wont reset for now but you reached a nice goal. Yay!");
+  alert("You reached the end of this game. The game won't reset for now but you reached a nice goal. Yay you're a true grinder!");
   return
 }
 
@@ -75,15 +104,9 @@ function draw() {
         perTick += g.amount
 
       }
+
+      //Quality gets calculated here
       quality =  Math.round(perTick / 10)
-      
-      if (perSec > best) best = perSec
-      if (quality == 0) value = 1
-      else {
-        value = (1 + (best / 20)) * stopper.mult
-      }
-      
-      
 
       // Coordinates of a random point
       let point = {
@@ -144,7 +167,7 @@ function draw() {
 function updateGUI() {
     document.getElementById("currency").textContent = "You have " + format(this.player.fractals) + " fractals"
     document.getElementById("perSec").textContent = "You generate " + format(perSec) + " fractals per second"
-    document.getElementById("quality").textContent = "Your fractal has a quality of " + format(quality) + " giving you " + format(value) + " fractals per button click!"
+    document.getElementById("quality").textContent = "Your fractal has a quality of " + format(quality) + " giving you " + format(value) + " fractals per button click also depending on the chargebar under the button!"
     for (let i = 0; i < 5; i++) {
 
         let g = generators[i]
@@ -153,7 +176,7 @@ function updateGUI() {
         else document.getElementById("gen" + (i + 1)).classList.remove("locked")
     }
     document.getElementById("inter").innerHTML = " Cost: " + format(stopper.cost)
-    document.getElementById("interText").innerHTML = "Interpolation - " + stopper.bought + "/25 - Boosts your Quality value"
+    document.getElementById("interText").innerHTML = "Interpolation - " + stopper.bought + "/25 - Makes the chargebar recharge quicker"
     if (stopper.cost > this.player.fractals) document.getElementById("inter").classList.add("locked")
     else document.getElementById("inter").classList.remove("locked")
     if (stopper.bought == 25) document.getElementById("inter").classList.add("locked")
@@ -175,6 +198,8 @@ function mainLoop() {
     productionLoop(diff)
     updateGUI()
     draw()
+    valueCalculation(diff)
+    chargeBar()
     lastUpdate = Date.now()
 }
 
