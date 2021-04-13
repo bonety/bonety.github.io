@@ -29,6 +29,10 @@
             Add Fractal
           </button>
           <p class="font" id="quality"></p>
+          <div class="inliner">
+            <p class="font" id="interText">Interpolation - Gives better Quality</p>
+            <div class="interpolation" id="inter" onclick="buyInterpolation()"></div>
+          </div>
         </div>
         
       </div>
@@ -48,10 +52,11 @@
               <div class="tab-content mt-3" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="nav-up1" role="tabpanel" aria-labelledby="nav-up1">
                   <p class="font">
-                  This website is still in active development. There is no real
-                  game to be found here. You need to start over after closing the tab.
+                  Buy upgrades to generate fractals and to enhance the quality of the fractal. Convolution generates fractals and each next upgrade creates more amounts of
+                  the upgrade above it. 
                 </p>
                 <div class= "font" id="currency">You have {{ player.fractals }} Fractals</div>
+                <div class= "font" id="perSec"></div>
                 
                 <div class="generators-container">
                   <div class="inliner">
@@ -99,6 +104,12 @@
             </div>
           </div>
         </div>
+      </div>
+      <div class="inliner">
+        <div id="shift" onclick="fractalShift()">Fractal shift 10e35</div>
+        <p id="shiftText" class="font">Do a fractal shift. Reset the game and get a fractal diamond. 
+          Fractal diamonds can be used for new upgrades! Only do this if you're sure you want to reset. 
+          (! NOT IMPLEMENTED YET BUT GO FOR IT !)</p>
       </div>
     </div>
   </body>

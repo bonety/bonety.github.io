@@ -2,7 +2,14 @@ var generators = []
 var lastUpdate = Date.now()
 var quality = 0
 var value = 1
-
+let best = 0
+let perSec = 0
+let shiftCost = Math.pow(10,35)
+let stopper = {
+  cost: Math.pow(Math.pow(10, 1), 2) * 10,
+  bought: 0,
+  mult: 1,
+}
 for (let i = 0; i < 5; i++) {
     let generator = {
         cost: Math.pow(Math.pow(10, i), i) * 10,
@@ -30,7 +37,24 @@ function buyGenerator(i) {
     g.bought += 1
     g.mult *= 1.05
     g.cost *= 1.5
+}
 
+function buyInterpolation() {
+    let s = stopper
+    let test = this.player.fractals
+    if (s.bought == 25 ) return
+    if (s.cost > this.player.fractals) return
+    this.player.fractals -= s.cost
+    s.bought += 1
+    s.mult += 1
+    s.cost *= 12
+    
+}
+
+function fractalShift() {
+  if (shiftCost > this.player.fractals) return
+  alert("You reached the end of this game. The game wont reset for now but you reached a nice goal. Yay!");
+  return
 }
 
 function draw() {
@@ -52,7 +76,13 @@ function draw() {
 
       }
       quality =  Math.round(perTick / 10)
-      value = 1 + Math.round((quality  * quality) / 3)
+      
+      if (perSec > best) best = perSec
+      if (quality == 0) value = 1
+      else {
+        value = (1 + (best / 20)) * stopper.mult
+      }
+      
       
 
       // Coordinates of a random point
@@ -85,10 +115,13 @@ function draw() {
           point.x = (point.x + corner.x) / 2;
           point.y = (point.y + corner.y) / 2;
           animation = 1
+          ctx.fillStyle = "rgba(0, 0, 200, 0.8)";
+          ctx.fillRect(point.x, point.y, 1, 1);
         }
-        ctx.fillStyle = "rgba(0, 0, 200, 0.8)";
-        ctx.fillRect(Math.round(Math.random() * 500), Math.round(Math.random() * 500), 1, 1);
-        
+        else {
+          ctx.fillStyle = "rgba(0, 0, 200, 0.8)";
+          ctx.fillRect(Math.round(Math.random() * 500), Math.round(Math.random() * 500), 1, 1);
+        }
         
         if ( perTick > 15 && animation == 0) {
           // Compute coordinates, midway between 'point' and 'corner'
@@ -110,6 +143,7 @@ function draw() {
 
 function updateGUI() {
     document.getElementById("currency").textContent = "You have " + format(this.player.fractals) + " fractals"
+    document.getElementById("perSec").textContent = "You generate " + format(perSec) + " fractals per second"
     document.getElementById("quality").textContent = "Your fractal has a quality of " + format(quality) + " giving you " + format(value) + " fractals per button click!"
     for (let i = 0; i < 5; i++) {
 
@@ -118,10 +152,18 @@ function updateGUI() {
         if (g.cost > this.player.fractals) document.getElementById("gen" + (i + 1)).classList.add("locked")
         else document.getElementById("gen" + (i + 1)).classList.remove("locked")
     }
+    document.getElementById("inter").innerHTML = " Cost: " + format(stopper.cost)
+    document.getElementById("interText").innerHTML = "Interpolation - " + stopper.bought + "/25 - Boosts your Quality value"
+    if (stopper.cost > this.player.fractals) document.getElementById("inter").classList.add("locked")
+    else document.getElementById("inter").classList.remove("locked")
+    if (stopper.bought == 25) document.getElementById("inter").classList.add("locked")
+    if (shiftCost > this.player.fractals) document.getElementById("shift").classList.add("locked")
+    else document.getElementById("shift").classList.remove("locked")
 }
 
 function productionLoop(diff) {
     this.player.fractals += generators[0].amount * generators[0].mult * diff
+    perSec = (generators[0].amount * generators[0].mult * 0.05) * 20
     for (let i = 1; i <5; i++) {
         generators[i - 1].amount += generators[i].amount * generators[i].mult * diff / 5
     }
