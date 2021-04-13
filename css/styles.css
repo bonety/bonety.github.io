@@ -31,7 +31,7 @@ canvas {
 
 .centerClr {
     margin: auto;
-    width: 25%;
+    width: 75%;
     padding: 0px;
     text-align: center;
     }
@@ -54,6 +54,7 @@ canvas {
     margin-bottom: 4px;
     user-select: none;
     justify-self: flex-end;
+    width: 60%;
 }
 
 .generator.locked {
@@ -126,7 +127,8 @@ canvas {
 }
 
 #visuals {
-    padding:2ch;
+    padding-top: 12px;
+    padding-left: 4px;
     border: 1px solid yellow;
     justify-content: center;
     text-align: center;

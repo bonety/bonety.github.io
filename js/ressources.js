@@ -1,6 +1,7 @@
 var generators = []
 var lastUpdate = Date.now()
 var quality = 0
+var value = 1
 
 for (let i = 0; i < 5; i++) {
     let generator = {
@@ -52,7 +53,7 @@ function draw() {
       }
       quality =  Math.round(perTick / 10)
       value = 1 + Math.round((quality  * quality) / 3)
-      document.getElementById("quality").textContent = "Your fractal has a quality of " + quality + " giving you " + value + " fractals per button click!"
+      
 
       // Coordinates of a random point
       let point = {
@@ -70,15 +71,31 @@ function draw() {
         // Select a corner based on the random number
         let corner = shape[rand];
 
+        let animation = 0
+
         //draw random background color
-        ctx.fillStyle = "rgba(0, 0, 200, 0.8)";
-        ctx.fillRect(Math.round(Math.random() * 500), Math.round(Math.random() * 500), 1, 1);
+        
         ctx.fillStyle = "rgba(0, 0, 0, 0.8)";
         ctx.fillRect(Math.round(Math.random() * 500), Math.round(Math.random() * 500), 1, 1);
 
-        // Compute coordinates, midway between 'point' and 'corner'
-        point.x = (point.x + corner.x) / 2;
-        point.y = (point.y + corner.y) / 2;
+        // gives a sort of animation late game
+
+        if ( perTick > 1000000000000000 ) {
+          // Compute coordinates, midway between 'point' and 'corner'
+          point.x = (point.x + corner.x) / 2;
+          point.y = (point.y + corner.y) / 2;
+          animation = 1
+        }
+        ctx.fillStyle = "rgba(0, 0, 200, 0.8)";
+        ctx.fillRect(Math.round(Math.random() * 500), Math.round(Math.random() * 500), 1, 1);
+        
+        
+        if ( perTick > 15 && animation == 0) {
+          // Compute coordinates, midway between 'point' and 'corner'
+          point.x = (point.x + corner.x) / 2;
+          point.y = (point.y + corner.y) / 2;
+        }
+        
 
         // Draw the new point
         ctx.fillStyle = "rgba(200,0,0)";
@@ -93,6 +110,7 @@ function draw() {
 
 function updateGUI() {
     document.getElementById("currency").textContent = "You have " + format(this.player.fractals) + " fractals"
+    document.getElementById("quality").textContent = "Your fractal has a quality of " + format(quality) + " giving you " + format(value) + " fractals per button click!"
     for (let i = 0; i < 5; i++) {
 
         let g = generators[i]
