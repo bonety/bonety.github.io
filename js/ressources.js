@@ -8,7 +8,7 @@ let best = 0
 let perSec = 0
 let shiftCost = Math.pow(10,35)
 let stopper = {
-  cost: Math.pow(Math.pow(10, 1), 2) * 10,
+  cost: 0 * (Math.pow(Math.pow(10, 1), 2) * 10),
   bought: 0,
   amount: 0,
 }
@@ -37,6 +37,7 @@ function buyGenerator(i) {
     test = this.player.fractals
     g.amount += 1
     g.bought += 1
+    if (g.bought % 10 == 0) g.mult *= 2
     g.mult *= 1.05
     g.cost *= 1.5
 }
@@ -65,17 +66,21 @@ function valueCalculation(diff) {
   
   // upgrades of interpolation determine the speed of the recharge of the bar
   t_hold = (510 - stopper.amount)
-
+  let buffer = diff * 20
+  if (buffer > 10) tickCounter += 20
   tickCounter += 1
   if (tickCounter >= t_hold) {
     tickCounter = 0
-    if (chargeStatus != 100) chargeStatus += (5 * (diff * 20))
+    if (chargeStatus != 100) chargeStatus += (5)
   } 
   if (chargeStatus > 100) chargeStatus = 100
 
   if (quality == 0) value = 1
   else {
-    value = 1 + ((((quality * quality * chargeStatus) / 3) / 100) * chargeStatus)
+    let Pre_value = 1 + ((((quality * quality * chargeStatus) / 3) / 100) * chargeStatus)
+    let loga = Math.round(Math.log10(Pre_value))
+    let logPercent = (loga / 100) * chargeStatus
+    value = Math.pow(10, logPercent)
   }
 
 }

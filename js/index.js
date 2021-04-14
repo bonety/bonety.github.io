@@ -6,7 +6,7 @@ var app = new Vue({
   methods: {
     inc: function (event) {
     this.player.fractals += value;
-    if (chargeStatus != 0) chargeStatus -= 5;
+    if (chargeStatus != 0) chargeStatus = 0;
     if (chargeStatus < 0) chargeStatus = 0;
     //this.draw(this.player.fractals);
     }
