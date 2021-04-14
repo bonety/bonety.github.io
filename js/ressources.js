@@ -8,7 +8,7 @@ let best = 0
 let perSec = 0
 let shiftCost = Math.pow(10,35)
 let stopper = {
-  cost: 0 * (Math.pow(Math.pow(10, 1), 2) * 10),
+  cost: Math.pow(Math.pow(10, 1), 2) * 10,
   bought: 0,
   amount: 0,
 }
