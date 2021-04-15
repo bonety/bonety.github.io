@@ -19,7 +19,7 @@
   <body>
     <div id="app">
       <div class="centerClr">
-        <p class="font mt-4 mb-4">The incremental game about fractals!</p>
+        <p class="font mt-4 mb-4" id="titleText">The incremental game about fractals!</p>
         <div class="inliner">
           <div>
             <button
@@ -36,7 +36,7 @@
           
           <p class="font" id="quality"></p>
           <div class="inliner">
-            <p class="font" id="interText">Interpolation - Makes the chargebar recharge quicker</p>
+            <p class="font" id="interText"></p>
             <div class="interpolation" id="inter" onclick="buyInterpolation()"></div>
           </div>
         </div>
@@ -46,7 +46,7 @@
       <div id="content">
         <div class="container-fluid">
           <div class="row">
-            <div id="menu" class="d-none d-sm-block col-xxl-8">
+            <div id="menu" class="d-none d-sm-block col-xxl-8 borderRad">
               <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
                   <button class="nav-link active" id="nav-up1-tab" data-bs-toggle="tab" data-bs-target="#nav-up1" type="button" role="tab" aria-controls="nav-up1" aria-selected="true">Generators</button>
@@ -57,7 +57,7 @@
               </nav>
               <div class="tab-content mt-3" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="nav-up1" role="tabpanel" aria-labelledby="nav-up1">
-                  <p class="font">
+                  <p class="font" id="up1text">
                   Buy upgrades to generate fractals and to enhance the quality of the fractal. Convolution generates fractals and each next upgrade creates more amounts of
                   the upgrade above it. 
                 </p>
@@ -66,23 +66,23 @@
                 
                 <div class="generators-container">
                   <div class="inliner">
-                    <p class="font gentext">Convolution -</p>
+                    <p class="font gentext" id="convolution">Convolution -</p>
                     <div class="generator" id="gen1" onclick="buyGenerator(1)"></div>
                   </div>
                   <div class="inliner">
-                    <p class="font gentext">Transformation -</p>
+                    <p class="font gentext" id="translation">Translation -</p>
                     <div class="generator" id="gen2" onclick="buyGenerator(2)"></div>
                   </div>
                   <div class="inliner">
-                    <p class="font gentext">Integration -</p>
+                    <p class="font gentext" id="integration">Integration -</p>
                     <div class="generator" id="gen3" onclick="buyGenerator(3)"></div>
                   </div>
                   <div class="inliner">
-                    <p class="font gentext">Multidimensional Formulation -</p>
+                    <p class="font gentext" id="transformation">Transformation -</p>
                     <div class="generator" id="gen4" onclick="buyGenerator(4)"></div>
                   </div>
                   <div class="inliner">
-                    <p class="font gentext">Correlational Integration -</p>
+                    <p class="font gentext" id="apothem">Apothem -</p>
                     <div class="generator" id="gen5" onclick="buyGenerator(5)"></div>
                   </div>
                 </div>
@@ -105,7 +105,7 @@
                 </div>
               </div>
             </div>
-            <div id="visuals" class="d-none d-sm-block col-xxl-4">
+            <div id="visuals" class="d-none d-sm-block col-xxl-4 borderRad">
               <canvas id="fractalDraw" width="500" height="500"></canvas>
             </div>
           </div>

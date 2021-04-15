@@ -12,12 +12,16 @@ let stopper = {
   bought: 0,
   amount: 0,
 }
+var genNames = ["Convolution", "Translation", "Integration", "Transformation", "Apothem"]
+var genIDs = ["convolution", "translation", "integration", "transformation", "apothem"]
 for (let i = 0; i < 5; i++) {
     let generator = {
         cost: Math.pow(Math.pow(10, i), i) * 10,
         bought: 0,
         amount: 0,
-        mult: 1
+        mult: 1,
+        name: genNames[i],
+        idText: genIDs[i]
     }
     generators.push(generator)
 }
@@ -170,18 +174,21 @@ function draw() {
   }
 
 function updateGUI() {
-    document.getElementById("currency").textContent = "You have " + format(this.player.fractals) + " fractals"
-    document.getElementById("perSec").textContent = "You generate " + format(perSec) + " fractals per second"
+    document.getElementById("currency").innerHTML = 'You have <span style="color:#FF4500;font-size:24px;">' + format(this.player.fractals) + '</span> fractals'
+    document.getElementById("perSec").innerHTML = 'You generate <span style="color:#FF4500;">' + format(perSec) + '</span> fractals per second'
     document.getElementById("quality").textContent = "Your fractal has a quality of " + format(quality) + " giving you " + format(value) + " fractals per button click also depending on the chargebar under the button!"
     for (let i = 0; i < 5; i++) {
 
         let g = generators[i]
-        document.getElementById("gen" + (i + 1)).innerHTML = "Amount: " + format(g.amount) + " Bought: " + g.bought + " Mult: " + format(g.mult) + " Cost: " + format(g.cost)
+        document.getElementById("gen" + (i + 1)).innerHTML = "Amount: " + format(g.amount) + " Bought: " + g.bought + " Cost: " + format(g.cost)
         if (g.cost > this.player.fractals) document.getElementById("gen" + (i + 1)).classList.add("locked")
         else document.getElementById("gen" + (i + 1)).classList.remove("locked")
+
+        document.getElementById(genIDs[i]).textContent = genNames[i] + " ( x" + format(g.mult) + " ) -" 
+
     }
     document.getElementById("inter").innerHTML = " Cost: " + format(stopper.cost)
-    document.getElementById("interText").innerHTML = "Interpolation - " + stopper.bought + "/25 - Makes the chargebar recharge quicker"
+    document.getElementById("interText").innerHTML = "Interpolation " + stopper.bought + "/25"
     if (stopper.cost > this.player.fractals) document.getElementById("inter").classList.add("locked")
     else document.getElementById("inter").classList.remove("locked")
     if (stopper.bought == 25) document.getElementById("inter").classList.add("locked")
