@@ -64,6 +64,10 @@ function chargeBar() {
 
 }
 
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+
 function valueCalculation(diff) {
   if (perSec > best) best = perSec
   
@@ -176,7 +180,7 @@ function draw() {
 function updateGUI() {
     document.getElementById("currency").innerHTML = 'You have <span style="color:#FF4500;font-size:24px;">' + format(this.player.fractals) + '</span> fractals'
     document.getElementById("perSec").innerHTML = 'You generate <span style="color:#FF4500;">' + format(perSec) + '</span> fractals per second'
-    document.getElementById("quality").textContent = "Your fractal has a quality of " + format(quality) + " giving you " + format(value) + " fractals per button click also depending on the chargebar under the button!"
+    document.getElementById("quality").innerHTML = "Quality: " + format(quality) + "<br>fractals per Click: " + format(value)
     for (let i = 0; i < 5; i++) {
 
         let g = generators[i]

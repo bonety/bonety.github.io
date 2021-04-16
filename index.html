@@ -13,13 +13,15 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/styles.css" />
-
+    <script src="js/jquery.js"></script>
+    <link rel="icon" type="image/jpg" href="assets/SierTri3.jpg">
     <title>Fractemental 0.2.2</title>
   </head>
   <body>
     <div id="app">
       <div class="centerClr">
         <p class="font mt-4 mb-4" id="titleText">The incremental game about fractals!</p>
+        
         <div class="inliner">
           <div>
             <button
@@ -34,9 +36,11 @@
             </div>
           </div>
           
-          <p class="font" id="quality"></p>
+          <p class="font" id="quality" data-toggle="tooltip" data-placement="top" title="The Quality measures how clean your fractal is and determines how many fractals you get per button click.
+                                              The Chargebar under the Button also changes the amount of fractals you'll get"></p>
+
           <div class="inliner">
-            <p class="font" id="interText"></p>
+            <p class="font" id="interText" data-toggle="tooltip" data-placement="top" title="Interpolation makes the chargebar recharge quicker"></p>
             <div class="interpolation" id="inter" onclick="buyInterpolation()"></div>
           </div>
         </div>
