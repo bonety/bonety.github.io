@@ -48,7 +48,6 @@ html, body {
     border: 2px solid rgba(218,165,32,0.5);
     background-color: rgba(255,255,0,0.8);
     text-align: center;
-    padding: 8px 15px 8px 15px;
     cursor: pointer;
     margin-top: 2px;
     margin-bottom: 2px;
@@ -72,6 +71,27 @@ html, body {
 
 }
 
+#maxBut {
+    border-radius: 3px;
+    font-family:'Press Start 2P', cursive;
+    font-size: 10px;
+    border: 2px solid rgba(218,165,32,0.5);
+    background-color: rgba(255,255,0,0.8);
+    text-align: center;
+    padding: 5px 10px 5px 10px;
+    margin: 2ch;
+    margin-top: 0;
+    cursor: pointer;
+    user-select: none;
+    
+    align-self: center;
+    color: #181818;
+}
+
+#maxBut.locked {
+    background-color: #181818;
+    color: yellow;
+}
 
 #shift {
     border-radius: 5px;
@@ -116,6 +136,15 @@ html, body {
     align-items: center;
     justify-content: space-between;
     
+}
+
+.inlinerNoSpace {
+    margin-left: 5ch;
+    margin-right: 5ch;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 
 .inliner p {

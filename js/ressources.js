@@ -36,7 +36,7 @@ function format(amount) {
 function buyGenerator(i) {
     let g = generators[i - 1]
     let test = this.player.fractals
-    if (g.cost > this.player.fractals) return
+    if (g.cost > this.player.fractals) return 1
     this.player.fractals -= g.cost
     test = this.player.fractals
     g.amount += 1
@@ -44,6 +44,19 @@ function buyGenerator(i) {
     if (g.bought % 10 == 0) g.mult *= 2
     g.mult *= 1.05
     g.cost *= 1.5
+    return 0
+}
+
+function buyMaxGen() {
+    let g = generators
+    for (i = 5; i > 0; i--) {
+      let stop = 0
+      while(stop == 0) {
+        stop = buyGenerator(i)
+      }
+
+    }
+
 }
 
 function buyInterpolation() {
@@ -78,14 +91,18 @@ function valueCalculation(diff) {
   if (buffer > 10) tickCounter += 20
   tickCounter += 1
   if (tickCounter >= t_hold) {
+    if (chargeStatus != 100){
+      while (tickCounter > 0)
+      tickCounter -= t_hold
+      chargeStatus += (5)
+    } 
     tickCounter = 0
-    if (chargeStatus != 100) chargeStatus += (5)
   } 
   if (chargeStatus > 100) chargeStatus = 100
 
   if (quality == 0) value = 1
   else {
-    let Pre_value = 1 + ((((quality * quality * chargeStatus) / 3) / 100) * chargeStatus)
+    let Pre_value = 1 + ((((quality * quality) / 3) / 100) * chargeStatus)
     let loga = Math.round(Math.log10(Pre_value))
     let logPercent = (loga / 100) * chargeStatus
     value = Math.pow(10, logPercent)
@@ -178,19 +195,28 @@ function draw() {
   }
 
 function updateGUI() {
+    let maxOn = 0
     document.getElementById("currency").innerHTML = 'You have <span style="color:#FF4500;font-size:24px;">' + format(this.player.fractals) + '</span> fractals'
     document.getElementById("perSec").innerHTML = 'You generate <span style="color:#FF4500;">' + format(perSec) + '</span> fractals per second'
     document.getElementById("quality").innerHTML = "Quality: " + format(quality) + "<br>fractals per Click: " + format(value)
+    document.getElementById("maxBut").classList.add("locked")
     for (let i = 0; i < 5; i++) {
 
         let g = generators[i]
         document.getElementById("gen" + (i + 1)).innerHTML = "Amount: " + format(g.amount) + " Bought: " + g.bought + " Cost: " + format(g.cost)
-        if (g.cost > this.player.fractals) document.getElementById("gen" + (i + 1)).classList.add("locked")
-        else document.getElementById("gen" + (i + 1)).classList.remove("locked")
+        if (g.cost > this.player.fractals){
+          document.getElementById("gen" + (i + 1)).classList.add("locked")
+        } 
+        else {
+          document.getElementById("gen" + (i + 1)).classList.remove("locked")
+          document.getElementById("maxBut").classList.remove("locked")
+          maxOn = 1
+        }
 
         document.getElementById(genIDs[i]).textContent = genNames[i] + " ( x" + format(g.mult) + " ) -" 
 
     }
+    if ( maxOn == 0 ) document.getElementById("maxBut").classList.add("locked")
     document.getElementById("inter").innerHTML = " Cost: " + format(stopper.cost)
     document.getElementById("interText").innerHTML = "Interpolation " + stopper.bought + "/25"
     if (stopper.cost > this.player.fractals) document.getElementById("inter").classList.add("locked")

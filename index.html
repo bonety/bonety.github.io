@@ -14,7 +14,7 @@
     />
     <link rel="stylesheet" href="css/styles.css" />
     <script src="js/jquery.js"></script>
-    <link rel="icon" type="image/jpg" href="assets/SierTri3.jpg">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
     <title>Fractemental 0.2.2</title>
   </head>
   <body>
@@ -67,6 +67,9 @@
                 </p>
                 <div class= "font" id="currency">You have {{ player.fractals }} Fractals</div>
                 <div class= "font" id="perSec"></div>
+                <div class="font inlinerNoSpace">
+                  <div id="maxBut" onclick="buyMaxGen()">Buy Max</div>
+                </div>
                 
                 <div class="generators-container">
                   <div class="inliner">
@@ -89,6 +92,7 @@
                     <p class="font gentext" id="apothem">Apothem -</p>
                     <div class="generator" id="gen5" onclick="buyGenerator(5)"></div>
                   </div>
+                  
                 </div>
                 
               </div>
